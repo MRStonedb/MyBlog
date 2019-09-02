@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'typeidea', # 模板放在manage.py同目录下的templates文件夹下的处理方式，否则模板找不到
     'blog',
     'config',
     'comment',

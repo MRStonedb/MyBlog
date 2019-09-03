@@ -86,6 +86,8 @@ class Post(models.Model):
     tag = models.ForeignKey(Tag, on_delete=models.CASCADE, verbose_name="标签")
     owner = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="作者")
     create_time = models.DateTimeField(auto_now_add=True, verbose_name="创建时间")
+    pv = models.PositiveIntegerField(default=1)  #最热
+    uv = models.PositiveIntegerField(default=1)  #最新
 
     def __str__(self):
         return self.title
@@ -114,6 +116,9 @@ class Post(models.Model):
 
         return post_list, category
 
+    @classmethod
+    def hot_posts(cls):
+        return cls.objects.filter(status=cls.STATUS_NORMAL).order_by('-pv')
 
     @classmethod
     def latest_posts(cls):

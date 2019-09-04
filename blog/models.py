@@ -17,7 +17,7 @@ class Category(models.Model):
     name = models.CharField(max_length=50,verbose_name="姓名")
     status = models.PositiveIntegerField(default=STATUS_NORMAL, choices=STATUS_ITEMS, verbose_name="状态")
     is_nav = models.BooleanField(default=False, verbose_name="是否为导航")
-    owner = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="作者")
+    owner = models.ForeignKey(User, on_delete=models.DO_NOTHING, verbose_name="作者")
     create_time = models.DateTimeField(auto_now_add=True, verbose_name="创建时间")
 
     def __str__(self):
@@ -60,7 +60,7 @@ class Tag(models.Model):
 
     name = models.CharField(max_length=10,verbose_name="姓名")
     status = models.PositiveIntegerField(default=STATUS_NORMAL, choices=STATUS_ITEMS, verbose_name="状态")
-    owner = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="作者")
+    owner = models.ForeignKey(User, on_delete=models.DO_NOTHING, verbose_name="作者")
     create_time = models.DateTimeField(auto_now_add=True, verbose_name="创建时间")
 
 
@@ -87,10 +87,9 @@ class Post(models.Model):
     content_html = models.TextField(verbose_name="正文html代码", blank=False, editable=False)
     status = models.PositiveIntegerField(default=STATUS_NORMAL, choices=STATUS_ITEMS, verbose_name="状态")
     is_md = models.BooleanField(default=True, verbose_name='markdown语法')
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, verbose_name="分类")
-    # tag = models.ForeignKey(Tag, on_delete=models.CASCADE, verbose_name="标签")
+    category = models.ForeignKey(Category, on_delete=models.DO_NOTHING, verbose_name="分类")
     tag = models.ManyToManyField(Tag, verbose_name="标签")
-    owner = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="作者")
+    owner = models.ForeignKey(User, on_delete=models.DO_NOTHING, verbose_name="作者")
     create_time = models.DateTimeField(auto_now_add=True, verbose_name="创建时间")
     pv = models.PositiveIntegerField(default=1)  #最热
     uv = models.PositiveIntegerField(default=1)  #最新

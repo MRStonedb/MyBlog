@@ -14,11 +14,14 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.contrib.sitemaps import views as sitemap_views
 from django.conf.urls import url
 
 from .custom_site import custom_site
 # from blog.views import post_list, post_detail
 from blog.views import IndexView, CategoryView, TagView, PostDetailView, SearchView, AuthorView
+from blog.rss import LatestPosetFeed
+from blog.sitemap import PostSitemap
 from comment.views import CommentView
 from config.views import LinkListView
 
@@ -39,6 +42,9 @@ urlpatterns = [
     url(r'^search/$', SearchView.as_view(), name='search'),
     url(r'^author/(?P<owner_id>\d+)/$', AuthorView.as_view(), name='author'),
     url(r'^comment/$', CommentView.as_view(), name='comment'),
+    url(r'^rss|feed/', LatestPosetFeed(), name='rss'),
+    url(r'^sitemap\.xml/$', sitemap_views.sitemap, {'sitemaps':{'posts':PostSitemap}}),
+
 
     url(r'^super_admin/', admin.site.urls),  #管理用户
     url(r'^admin/', custom_site.urls),  # 管理业务

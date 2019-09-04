@@ -88,7 +88,6 @@ class PostAdmin(BaseAdmin):
     # 用fieldsets 替换 fields  自定义控制布局
     fieldsets = (
         ('基础配置', {
-            'description':'基础配置描述',
             'fields':(
                 ('category', 'title'),
                 'status',
@@ -100,8 +99,8 @@ class PostAdmin(BaseAdmin):
                 'content',
             ),
         }),
-        ('额外信息', {
-            'classes':('collapse',), # 给配置的板块加上css属性
+        ('其他', {
+            # 'classes':('collapse',), # 给配置的板块加上css属性
             'fields':(
                 'tag',
             ),

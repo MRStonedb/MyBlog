@@ -41,6 +41,12 @@ INSTALLED_APPS = [
     'blog',
     'config',
     'comment',
+    'ckeditor', # 富文本编辑器
+    'ckeditor_uploader',
+    'dal', # 自动补全插件
+    'dal_select2', # 自动补全插件
+    'xadmin',  # xadmin
+    'crispy_forms',# xadmin
 ]
 
 MIDDLEWARE = [
@@ -118,3 +124,26 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# xadmin 配置
+XADMIN_TITLE = 'Typeidea 后台管理'
+XADMIN_FOOTER_TITLE = 'power by beststone.top'
+
+# 富文本编辑器界面配置
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'full',
+        'height': 300,
+        'width': 800,
+        'tabSpaces': 4,
+        'extraPlugins': 'codesnippet', #配置代码插件
+    },
+}
+
+# ckeditor 富文本编辑器上传图片的存储位置
+MEDIA_URL = "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+CKEDITOR_UPLOAD_PATH = "article_images"
+
+# 图像水印
+DEFAULT_FILE_STORAGE = 'typeidea.storage.WatermarkStorage'

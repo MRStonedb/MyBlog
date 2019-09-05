@@ -86,7 +86,7 @@ class Post(models.Model):
     content = models.TextField(verbose_name="正文", help_text="正文必须为MarkDown格式")
     content_html = models.TextField(verbose_name="正文html代码", blank=False, editable=False)
     status = models.PositiveIntegerField(default=STATUS_NORMAL, choices=STATUS_ITEMS, verbose_name="状态")
-    is_md = models.BooleanField(default=True, verbose_name='markdown语法')
+    is_md = models.BooleanField(default=False, verbose_name='markdown语法')
     category = models.ForeignKey(Category, on_delete=models.DO_NOTHING, verbose_name="分类")
     tag = models.ManyToManyField(Tag, verbose_name="标签")
     owner = models.ForeignKey(User, on_delete=models.DO_NOTHING, verbose_name="作者")

@@ -18,14 +18,22 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.sitemaps import views as sitemap_views
 from django.conf.urls import url, include
+from rest_framework.routers import DefaultRouter
+from rest_framework.documentation import include_docs_urls
 
 from blog.views import IndexView, CategoryView, TagView, PostDetailView, SearchView, AuthorView
 from blog.rss import LatestPosetFeed
 from blog.sitemap import PostSitemap
+# from blog.apis import PostList, Post_list
+from blog.apis import PostViewSet, CategoryViewset
 from comment.views import CommentView
 from config.views import LinkListView
 
 from .autocomplete import CategoryAutocomplete, TagAutocomplete
+
+router = DefaultRouter()
+router.register(r'post', PostViewSet, base_name='api-post')
+router.register(r'category', CategoryViewset, base_name='api-category')
 
 urlpatterns = [
     # function view
@@ -50,6 +58,13 @@ urlpatterns = [
     url(r'^category-autocomplete/$', CategoryAutocomplete.as_view(), name='category-autocomplete'),
     url(r'^tag-autocomplete/$', TagAutocomplete.as_view(), name='tag-autocomplete'),
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),
+
+    #restfull API
+    # url(r'^api/post/', Post_list, name='post-list'),
+    # url(r'^api/post/', PostList.as_view(), name='post-list'),
+    # url(r'^api/', include(router.urls, namespace='api')),  # 所有的DRF都不支持namespace
+    url(r'^api/', include(router.urls)),
+    url(r'^api/docs/', include_docs_urls(title='typeidea apis')),
 
     url(r'^admin/', xadmin.site.urls, name='xadmin'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

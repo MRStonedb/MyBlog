@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'dal_select2', # 自动补全插件
     'xadmin',  # xadmin
     'crispy_forms',# xadmin
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -147,3 +148,10 @@ CKEDITOR_UPLOAD_PATH = "article_images"
 
 # 图像水印
 DEFAULT_FILE_STORAGE = 'typeidea.storage.WatermarkStorage'
+
+#api docs
+REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.AutoSchema',
+    'DEFAULT_PAGINATION_CLASS':'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE':2,
+}

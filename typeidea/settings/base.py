@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'xadmin',  # xadmin
     'crispy_forms',# xadmin
     'rest_framework',
+    'captcha',
 ]
 
 MIDDLEWARE = [

@@ -1,5 +1,5 @@
 from django import forms
-
+from captcha.fields import CaptchaField
 import mistune
 
 from .models import Comment
@@ -37,6 +37,8 @@ class CommentForm(forms.ModelForm):
             attrs={'rows':6, 'cols':60, 'class':'form-control'}
         )
     )
+
+    # captcha = CaptchaField()
 
     def clean_content(self):
         content = self.cleaned_data.get('content')

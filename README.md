@@ -8,7 +8,10 @@
 4. 文章评论，验证码提交
 5. 管理后台使用xadmin集成
 6. 实现restfullAPI接口
-7. 缓存实现
+7. 文章编辑，富文本编辑器ckeditor集成图片处理
+8. 图片加水印
+9. 搜索自动补全dal库，dal_select2库使用
+10. 富文本编辑器ckeditor 兼容makedown格式
 
 ![image](https://github.com/MRStonedb/MyBlog/blob/master/images/myblog_admin.jpg)
 ![image](https://github.com/MRStonedb/MyBlog/blob/master/images/myblog_index.jpg)
